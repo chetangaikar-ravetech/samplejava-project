@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-      string(name: 'version', defaultValues: '0.1', description: '')
+      string(name: 'version', defaultValue: '0.1', description: '')
       choice(name: 'deploymentServer', choices: ['S1','S2'], description: '')
     }
     tools {
