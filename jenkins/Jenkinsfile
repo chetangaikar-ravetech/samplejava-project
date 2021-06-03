@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    parameters {
+      string(name: 'version', defaultValues: '0.1', description: '')
+      choice(name: 'deploymentServer', choices: ['S1','S2'], description: '')
+    }
     tools {
       maven 'Maven-3.8.1'
     }
@@ -23,6 +28,7 @@ pipeline {
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
                 sh './jenkins/scripts/deliver.sh'
+                echo "Deploying ${params.version} to ${params.deploymentServer}"
             }
         }
     }
